@@ -1,0 +1,1076 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Documentation for AutoKeras.">
+      
+      
+        <link rel="canonical" href="http://autokeras.com/tutorial/trains/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="/img/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
+    
+    
+      
+        <title>TRAINS Integration - AutoKeras</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.1b62728e.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ef5350">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.268332fc.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-44322747-3", "autokeras.com")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="red" data-md-color-accent="red">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#trains-integration" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://autokeras.com" title="AutoKeras" class="md-header-nav__button md-logo">
+          
+            <img src="/img/logo_white.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              AutoKeras
+            </span>
+            <span class="md-header-nav__topic">
+              
+                TRAINS Integration
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/keras-team/autokeras" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="http://autokeras.com" title="AutoKeras" class="md-nav__button md-logo">
+      
+        <img src="/img/logo_white.svg" width="48" height="48">
+      
+    </a>
+    AutoKeras
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/keras-team/autokeras" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../install/" title="Installation" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Getting Started
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Getting Started
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../image_classification/" title="Image Classification" class="md-nav__link">
+      Image Classification
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../image_regression/" title="Image Regression" class="md-nav__link">
+      Image Regression
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../text_classification/" title="Text Classification" class="md-nav__link">
+      Text Classification
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../text_regression/" title="Text Regression" class="md-nav__link">
+      Text Regression
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../structured_data_classification/" title="Structured Data Classification" class="md-nav__link">
+      Structured Data Classification
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../structured_data_regression/" title="Structured Data Regression" class="md-nav__link">
+      Structured Data Regression
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../multi/" title="Multi-Modal and Multi-Task" class="md-nav__link">
+      Multi-Modal and Multi-Task
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../customized/" title="Customized Model" class="md-nav__link">
+      Customized Model
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../export/" title="Export Model" class="md-nav__link">
+      Export Model
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        TRAINS Integration
+      </label>
+    
+    <a href="./" title="TRAINS Integration" class="md-nav__link md-nav__link--active">
+      TRAINS Integration
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-trains" class="md-nav__link">
+    Setting up Trains
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tracking-your-autokeras-tasks" class="md-nav__link">
+    Tracking your AutoKeras tasks
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visualizing-task-results" class="md-nav__link">
+    Visualizing Task Results
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-models" class="md-nav__link">
+    Task Models
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tracking-model-performance" class="md-nav__link">
+    Tracking Model Performance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-development-insights" class="md-nav__link">
+    Model Development Insights
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../faq/" title="FAQ" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/mnist/" title="MNIST Hand-Written Digits" class="md-nav__link">
+      MNIST Hand-Written Digits
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/imdb/" title="IMDB Movie Reviews" class="md-nav__link">
+      IMDB Movie Reviews
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/titanic/" title="Titanic Survival Prediction" class="md-nav__link">
+      Titanic Survival Prediction
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/" title="Docker" class="md-nav__link">
+      Docker
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../contributing/" title="Contributing Guide" class="md-nav__link">
+      Contributing Guide
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Documentation
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Documentation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-1" type="checkbox" id="nav-7-1">
+    
+    <label class="md-nav__link" for="nav-7-1">
+      Task API
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-7-1">
+        Task API
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../image_classifier/" title="ImageClassifier" class="md-nav__link">
+      ImageClassifier
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../image_regressor/" title="ImageRegressor" class="md-nav__link">
+      ImageRegressor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../text_classifier/" title="TextClassifier" class="md-nav__link">
+      TextClassifier
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../text_regressor/" title="TextRegressor" class="md-nav__link">
+      TextRegressor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../structured_data_classifier/" title="StructuredDataClassifier" class="md-nav__link">
+      StructuredDataClassifier
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../structured_data_regressor/" title="StructuredDataRegressor" class="md-nav__link">
+      StructuredDataRegressor
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../auto_model/" title="AutoModel" class="md-nav__link">
+      AutoModel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-3" type="checkbox" id="nav-7-3">
+    
+    <label class="md-nav__link" for="nav-7-3">
+      Building Block
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-7-3">
+        Building Block
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../base/" title="Base Class" class="md-nav__link">
+      Base Class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../node/" title="Node" class="md-nav__link">
+      Node
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../preprocessing/" title="Preprocessoring" class="md-nav__link">
+      Preprocessoring
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../network/" title="Network" class="md-nav__link">
+      Network
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../head/" title="Head" class="md-nav__link">
+      Head
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../about/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-trains" class="md-nav__link">
+    Setting up Trains
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tracking-your-autokeras-tasks" class="md-nav__link">
+    Tracking your AutoKeras tasks
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visualizing-task-results" class="md-nav__link">
+    Visualizing Task Results
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-models" class="md-nav__link">
+    Task Models
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tracking-model-performance" class="md-nav__link">
+    Tracking Model Performance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-development-insights" class="md-nav__link">
+    Model Development Insights
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="trains-integration">Trains Integration</h1>
+<p>Allegro Trains is a full system open source ML / DL experiment manager and ML-Ops solution.
+It enables data scientists and data engineers to effortlessly track, manage, compare and collaborate on their experiments as well as easily manage their training workloads on remote machines.</p>
+<p><strong>Trains</strong> is a suite of open source Python packages and plugins, including:</p>
+<ul>
+<li><a href="https://github.com/allegroai/trains"><strong>Trains</strong></a> Python Client package - Integrate <strong>Trains</strong> into your AutoKeras tasks with just two lines of code, and get all of <strong>Trains</strong> robust features. </li>
+<li><a href="https://github.com/allegroai/trains-server"><strong>Trains Server</strong></a> - The <strong>Trains</strong> backend infrastructure and web UI. Use the public <a href="https://demoapp.trains.allegro.ai"><strong>Trains</strong> demo server</a>, or deploy your own.</li>
+<li><a href="https://github.com/allegroai/trains-agent"><strong>Trains Agent</strong></a> -  The <strong>Trains</strong> DevOps component for experiment execution, resource control, and autoML..</li>
+<li>Additional integrations - Integrate <strong>Trains</strong> with <a href="https://github.com/allegroai/trains-pycharm-plugin">PyCharm</a> and <a href="https://github.com/allegroai/trains-jupyter-plugin">Jupyter Notebook</a>. </li>
+</ul>
+<p><img src="https://allegro.ai/docs/img/trains/gif/webapp_screenshots.gif"></p>
+<h2 id="setting-up-trains">Setting up Trains</h2>
+<p>To integrate <strong>Trains</strong> into your AutoKeras project, do the following:</p>
+<ol>
+<li>
+<p>Install the <strong>Trains</strong> Python Client package.</p>
+<div class="codehilite"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">trains</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>Add the short <strong>Trains</strong> initialization code to your task.</p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">trains</span> <span class="kn">import</span> <span class="n">Task</span>
+
+<span class="n">task</span> <span class="o">=</span> <span class="n">Task</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">project_name</span><span class="o">=</span><span class="s2">&quot;autokeras&quot;</span><span class="p">,</span> <span class="n">task_name</span><span class="o">=</span><span class="s2">&quot;autokeras imdb example with scalars&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>Run your task. The console output will include the URL of the task's <strong>RESULTS</strong> page.</p>
+<div class="codehilite"><pre><span></span>TRAINS Task: overwriting (reusing) task id=60763e04c0ba45ea9fe3cfe79f3f06a3
+TRAINS results page: https://demoapp.trains.allegro.ai/projects/21643e0f1c4a4c99953302fc88a1a84c/experiments/60763e04c0ba45ea9fe3cfe79f3f06a3/output/log<span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</pre></div>
+
+
+</li>
+</ol>
+<p>See an example script <a href="https://github.com/allegroai/trains/blob/master/examples/autokeras/autokeras_imdb_example.py">here</a>.</p>
+<h2 id="tracking-your-autokeras-tasks">Tracking your AutoKeras tasks</h2>
+<h3 id="visualizing-task-results">Visualizing Task Results</h3>
+<p><strong>Trains</strong> automatically logs comprehensive information about your AutoKeras task: code source control, execution environment, hyperparameters and more.<br />
+It also automatically records any scalars, histograms and images reported to Tensorboard/Matplotlib or Seaborn.</p>
+<p>For example, making use of Tensorboard in your task will make all recorded information available in <strong>Trains</strong> as well:</p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+
+<span class="n">tensorboard_callback_train</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">TensorBoard</span><span class="p">(</span><span class="n">log_dir</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">tensorboard_callback_test</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">TensorBoard</span><span class="p">(</span><span class="n">log_dir</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">tensorboard_callback_train</span><span class="p">])</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">tensorboard_callback_test</span><span class="p">])</span>
+</pre></div>
+
+<p>When your task runs, you can follow its results, including any collected metrics through the <strong>Trains</strong> web UI.</p>
+<p>View your task results in the <strong>Trains</strong> web UI, by clicking on it in the <strong>EXPERIMENTS</strong> table.<br />
+Find the <strong>EXPERIMENT</strong> table under the specified project listed in the <strong>HOME</strong> or <strong>PROJECTS</strong> page:  </p>
+<p><img src="https://allegro-datasets.s3.amazonaws.com/erez/Selection_028.png" style="border: 1px solid black; border-radius:3px"></p>
+<p>Detailed description <strong>Trains</strong> Web UI experiment information can be obtained <a href="https://allegro.ai/docs/webapp/webapp_exp_details/">here</a>.<br />
+Additional information on <strong>Trains</strong> logging capabilities can be obtained in the <a href="https://allegro.ai/docs/concepts_arch/concepts_arch/#logging">relevant <strong>Trains</strong> Documentation</a></p>
+<h3 id="task-models">Task Models</h3>
+<p><strong>Trains</strong> automatically tracks models produced by your AutoKeras tasks.</p>
+<p>To upload models, specify the <code>output_uri</code> parameter when calling <code>Task.init</code> to provide the upload destination:</p>
+<div class="codehilite"><pre><span></span>    <span class="n">task</span> <span class="o">=</span> <span class="n">Task</span><span class="p">.</span><span class="n">init</span><span class="p">(</span><span class="n">project_name</span><span class="o">=</span><span class="ss">&quot;autokeras&quot;</span><span class="p">,</span> 
+        <span class="n">task_name</span><span class="o">=</span><span class="ss">&quot;autokeras imdb example with scalars&quot;</span><span class="p">,</span>
+        <span class="n">output_uri</span><span class="o">=</span><span class="ss">&quot;http://localhost:8081/&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>View models information in the experiment details panel, <strong>ARTIFACTS</strong> tab:  </p>
+<p><img id="myImg_01" class="modalImg" src="https://allegro-datasets.s3.amazonaws.com/erez/Selection_029.png" style="border: 1px solid black; border-radius:3px"></p>
+<h3 id="tracking-model-performance">Tracking Model Performance</h3>
+<p>Use the <strong>Trains</strong> web UI to easily create experiment leaderboards and quickly identify best performing models.<br />
+Customize your board adding any valuable metric or hyperparameter.</p>
+<p><img id="myImg_03" class="modalImg" src="https://allegro-datasets.s3.amazonaws.com/erez/Selection_031.png" style="border: 1px solid black; border-radius:3px">  </p>
+<p>Additional information on customizing <strong>Trains</strong> experiment and model tables can be obtained in the <a href="https://allegro.ai/docs/webapp/webapp_exp_table/#customize-the-experiments-table">relevant <strong>Trains</strong> Documentation</a></p>
+<h3 id="model-development-insights">Model Development Insights</h3>
+<p>Use the <strong>Trains</strong> web UI to view side-by-side comparison of experiments: Easily locate the differences and impact of experiment configuration parameters, metrics, scalars etc.</p>
+<p>Compare multiple experiments, by selecting two or more experiments in the <strong>EXPERIMENTS</strong> table, and clicking <strong>COMPARE</strong>.</p>
+<p>The following image shows how two experiments compare in their epoch_accuracy and epoch_loss behaviour:</p>
+<p><img id="myImg_02" class="modalImg" src="https://allegro-datasets.s3.amazonaws.com/erez/Selection_030.png" style="border: 1px solid black; border-radius:3px"></p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../export/" title="Export Model" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Export Model
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../faq/" title="FAQ" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                FAQ
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.808e90bb.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="https://unpkg.com/mermaid@8.4.4/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
